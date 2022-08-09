@@ -398,7 +398,7 @@ def ClieIngFin(request, ning):
         form = FinderApellido(request.POST)
         
         sname = request.POST['apellido']
-        findclie = Clientes.objects.filter(apellido__contains=sname)
+        findclie = Clientes.objects.filter(apellido__contains=sname.upper())
         
         return render(request, "admin_turnos/cliente_ing_finder.html", {"form": form,
                                                                            "show": show,

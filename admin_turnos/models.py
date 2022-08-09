@@ -1,5 +1,20 @@
 from django.db import models
 
+
+class UpperCaseCharField(models.CharField):
+
+    def __init__(self, *args, **kwargs):
+        super(UpperCaseCharField, self).__init__(*args, **kwargs)
+
+    def pre_save(self, model_instance, add):
+        value = getattr(model_instance, self.attname, None)
+        if value:
+            value = value.upper()
+            setattr(model_instance, self.attname, value)
+            return value
+        else:
+            return super(UpperCaseCharField, self).pre_save(model_instance, add)
+
 class Ingresos(models.Model):
     class Meta:
         ordering = ["fec_ingreso"]
@@ -34,8 +49,8 @@ class Anuncios(models.Model):
 
 class Clientes(models.Model):
     id = models.AutoField(primary_key=True)
-    apellido = models.CharField(max_length=50)
-    nombres = models.CharField(max_length=50)
+    apellido = UpperCaseCharField(max_length=50)
+    nombres = UpperCaseCharField(max_length=50)
     documento = models.CharField(max_length=11)
     picture = models.ImageField(upload_to="images/",null=True)
     fec_nac = models.DateField(null=True)
@@ -46,3 +61,4 @@ class Tramites(models.Model):
     activo = models.CharField(max_length=1)
     decorador = models.CharField(max_length=1)
     lugar = models.CharField(max_length=20)
+

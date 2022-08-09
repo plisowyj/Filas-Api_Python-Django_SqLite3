@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Detalle de Turno para Atender</h1>
+
+</div>
+
+<!-- Content Row -->
+{% load static %}
+<div class="row align-items-center justify-content-center ">
+    <div class="container w-75">
+        <a class="btn btn-info mb-4" href="{% url 'lugares' %}">volver</a>
+    </div>
+    <br />
+    <div class="card align-items-center  justify-content-center " style="width: 50rem;">
+
+        <div class="card-body">
+            <center>
+
+                <h1 class="card-title text-uppercase">{{ingreso.tram_detalle}} -
+                    {{ingreso.decorador}}{{ingreso.contador}}</h1>
+                {% if apenom %}
+                    <div class="card align-items-center  justify-content-center " style="width: 50rem;">
+                        {% if picture %}
+                            <img src="{{ media }}{{picture}}" class="card-img-top w-25 m-3">
+                        {% else %}
+                            <img src="{% static 'img/client.png'%}" class="card-img-top m-3" style="width:50px;">
+                        {% endif %}
+                        <div class="card-body">
+                            <center>
+                                <h2 class="card-title text-uppercase">{{apenom}}</h2>
+                                <p class="card-text ">N° Documento: <b>{{ingreso.documento}}</b></p>
+                                <p class="card-text">Fecha Nac.: <b>{{fec_nac}}</b></p>
+                                <p class="card-text">Fecha Ingreso: <b>{{ingreso.fec_ingreso}}</b></p>
+                            </center>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="card align-items-center  justify-content-center " style="width: 50rem;">
+                        <img src="{% static 'img/client.png'%}" class="card-img-top m-3" style="width:50px;">
+                        <div class="card-body">
+                            <center>
+                                <h2 class="card-title">N°: Documento: {{ingreso.documento}}</h2>
+                                <p class="card-text">Fecha Ingreso: <b>{{ingreso.fec_ingreso}}</b></p>
+                            </center>
+                        </div>
+                    </div>
+                {% endif %}
+                <br />
+                <a class="btn btn-secondary" type="button"
+                    href="{% url 'lugaranun' ingreso.id ingreso.decorador ingreso.contador ingreso.id_tramite %}">
+                    <i class="fa fa-desktop"></i> Anunciar
+                </a>
+                <a class="btn btn-success" type="button" href="{% url 'turnofinal' ingreso.id %}">
+                    <i class="fa fa-check"></i> Atender
+                </a>
+
+            </center>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

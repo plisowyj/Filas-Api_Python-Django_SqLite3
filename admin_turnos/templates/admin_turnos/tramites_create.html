@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Crear un nuevo Tramite</h1>
+
+</div>
+
+<!-- Content Row -->
+
+<div class="row align-items-center justify-content-center">
+    <div class="container w-75">
+        <a class="btn btn-info mb-4" href="{% url 'tlist' %}">volver</a>
+    </div>
+    <br />
+    
+    <div class="container w-75">
+
+        <form class="form-horizontal"  method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-primary mb-4" type="submit" value="Confirmar"> 
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

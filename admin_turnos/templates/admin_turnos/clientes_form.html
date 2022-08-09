@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{titulo}}</h1>
+
+</div>
+
+<!-- Content Row -->
+
+<div class="row align-items-center justify-content-center">
+    <div class="container w-75">
+        <a class="btn btn-info mb-4" href="{% url 'clist' %}">volver</a>
+    </div>
+    <br />
+    <div class="alert alert-warning w-50 text-center m-3" >
+        Complete los campos señalados con '*'.
+    </div>
+    {% load static %}
+    <div class="container w-75">
+                
+        <form class="form-horizontal"  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <label>Visor de foto:</label>
+            <div class="card align-items-center  justify-content-center " >
+                
+                {% if form.picture.value %}
+                    <img src="{{ media }}{{form.picture.value}}" class="card-img-top w-25 m-3">
+                {% else %}
+                    <img src="{% static 'img/client.png'%}" class="card-img-top m-3" style="width:50px;">
+                {% endif %}
+            </div>
+
+            <br />
+            <input class="btn btn-primary mb-4" type="submit" value="Confirmar">
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
+

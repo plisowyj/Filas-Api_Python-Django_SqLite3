@@ -1,0 +1,38 @@
+{% extends "base_screen.html" %}
+
+{% block cuerpo %}
+
+<div class="container ">
+    <div class="row ">
+        <div class="text-center">
+            <div class="text-center mt-2">
+                <span>Copyright &copy; 2022</span>
+            </div>
+            <h1 id="tit_screen" class="text-white">Ud será llamado...</h1>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container w-50 mt-5 contact-section">
+    
+<div class="card align-items-center  justify-content-center " >
+
+    <div id="ticket" class="card-body text-uppercase">
+        <center>
+            <h1 class="display-1">{{turno}}</h1>
+            <p class="card-text">Su Trámite: <b>{{sdesc}}</b></p>
+            <p class="card-text">Su N° Documento: <b>{{ndoc}}</b></p>
+
+
+            <a class="btn btn-info mb-4 mt-5" href="{% url 'touch' %}">Volver</a>
+        </center>
+    </div>
+</div>
+    
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Detalle de Cliente</h1>
+
+</div>
+
+<!-- Content Row -->
+{% load static %}
+<div class="row align-items-center justify-content-center">
+
+
+    <div class="card align-items-center  justify-content-center " style="width: 50rem;">
+        {% if object.picture %}
+            <img src="{{ media }}{{object.picture}}" class="card-img-top w-25 m-3">
+        {% else %}
+            <img src="{% static 'img/client.png'%}" class="card-img-top m-3" style="width:50px;">
+        {% endif %}
+        <div class="card-body">
+            <center>
+                <h2 class="card-title">{{object.apellido}} {{object.nombres}}</h2>
+                <p class="card-text">N° Documento: <b>{{object.documento}}</b></p>
+                <p class="card-text">Fecha Nac.: <b>{{object.fec_nac}}</b></p>
+
+                <a class="btn btn-info mb-4" href="{% url 'clist' %}">Volver</a>
+            </center>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

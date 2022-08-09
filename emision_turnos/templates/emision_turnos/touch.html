@@ -1,0 +1,45 @@
+{% extends "base_screen.html" %}
+
+{% block cuerpo %}
+
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+            <div class="text-center mt-2">
+                <span>Copyright &copy; 2022</span>
+            </div>
+            <h1 id="tit_screen" class="text-white">Seleccione un Trámite</h1>
+        </div>
+    </div>
+</div>
+
+
+<section class="contact-section">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5">
+            {% if tramites %}
+                {% for boton in tramites %}
+                    <div class="col-md-4 mb-3 mb-md-3">
+                        <div class="card py-4 h-100">
+                            <div class="card-body text-center">
+                                <h2 class="text-uppercase m-0">{{boton.descripcion}}</h2>
+                                <hr class="my-4 mx-auto" />
+                                <a  class="btn btn-primary" onclick="ingresar({{boton.id}});">Tomar Turno</a>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                
+            {% else %}
+                <div class="alert alert-primary w-100 text-center m-3" role="alert">
+                    Notifique a un Administrador para habilitar trámites!
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

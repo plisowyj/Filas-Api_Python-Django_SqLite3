@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Iniciar Sesión</h1>
+
+</div>
+
+<!-- Content Row -->
+
+<div class="row">
+    <div class="container w-50">
+        
+    <form class="form-horizontal" style="margin:0 auto" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit" value="Submit">Iniciar Sesión</button>
+    </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

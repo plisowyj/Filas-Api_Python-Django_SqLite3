@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Turnos Atendibles Trámite: {{tramdes|upper}}</h1>
+
+</div>
+
+<!-- Content Row -->
+<div class="row align-items-center justify-content-center">
+    <div class="container w-75">
+
+        {% if form %}
+        <table class="table table-striped table-hover text-uppercase">
+            <thead>
+                <tr>
+                    <th scope="col">Fecha Ingreso</th>
+                    <th scope="col">Tramite</th>
+                    <th scope="col">Documento</th>
+                    
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for ingreso in form %}
+                <tr>
+                    <td>{{ ingreso.fec_ingreso }}</td>
+                    <td>{{ ingreso.decorador }}{{ ingreso.contador }}</td>
+                    <td>{{ ingreso.documento }}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+        <div class="alert alert-primary w-100 text-center m-3" role="alert">
+            No hay resultados.
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

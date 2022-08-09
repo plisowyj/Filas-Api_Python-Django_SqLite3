@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Screen</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/disponibilidad.png'%}" />
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    
+    
+    <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+</head>
+
+<body id="page-top" class="signup-section" style="overflow-y:hidden;">
+        
+    <div id="content">
+        {% block cuerpo %}
+            
+        
+        {% endblock %}
+    </div>
+            
+    <div id="modal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmación de turno</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" ></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ingrese su N° de documento *</p>
+                    <input id="ndoc" class="form-control form-control-lg mb-3" type="number" 
+                        aria-label=".form-control-lg example">
+                    * = Este dato es requerido
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-success" onclick="confirmar();">Confirmar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+    <script>
+        seleccion=0;
+        
+        $(document).ready(function () {
+            if ($('#titulo').length) {
+                setInterval(reloadTv(), 5000);
+            }
+        });
+        function reloadTv(){
+            document.location.href = "/caller"
+        }
+        function ingresar(nId){
+            seleccion=nId;
+            $('#modal').modal('show');
+            $('#ndoc').focus();
+        }
+        function confirmar(){
+            
+            if ($('#ndoc').val()){
+               document.location.href = "/touch/confirm/"+ $('#ndoc').val()+"/"+seleccion;
+            }
+        }
+        
+    </script>
+
+</body>
+
+</html>

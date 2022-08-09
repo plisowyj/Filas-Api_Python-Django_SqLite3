@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Confirmación Eliminación del Cliente</h1>
+
+</div>
+
+<!-- Content Row -->
+
+<div class="row align-items-center justify-content-center">
+    <div class="container w-75" mb-3>
+        <center><a class="btn btn-info mb-4" href="{% url 'clist' %}">volver</a></center>
+    </div>
+    <br />
+
+    <div class="container w-75" mt-3>
+
+        <form class="form-horizontal " method="post">
+            {% csrf_token %}
+            <center>
+
+                <h3>La eliminación no se podrá deshacer!</h3>
+                <h4>¿Confirma esta acción para el cliente <span class="text-uppercase"><b>{{object.apellido}} {{object.nombres}}</b>?</span></h4>
+                <br />
+                <input class="btn btn-danger mb-4" type="submit" value="Borrar">
+
+            </center>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Detalle de Tramite</h1>
+
+</div>
+
+<!-- Content Row -->
+{% load static %}
+<div class="row align-items-center justify-content-center">
+   
+    
+         <div class="card align-items-center  justify-content-center " style="width: 30rem;">
+            <img src="{% static 'img/portapapeles.png'%}" class="card-img-top w-25 m-3">
+            <div class="card-body">
+                <center>
+                <h2 class="card-title">{{object.descripcion}}</h2>
+                <p class="card-text">Activo: <b>{{object.activo}}</b></p>
+                <p class="card-text">Decorador: <b>{{object.decorador}}</b></p>
+                <p class="card-text">Lugar: <b>{{object.lugar}}</b></p>
+                
+                <a class="btn btn-info mb-4" href="{% url 'tlist' %}">Volver</a>
+                </center>
+            </div>
+        </div>
+    
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Detalle de Recepción</h1>
+
+</div>
+
+<!-- Content Row -->
+{% load static %}
+<div class="row align-items-center justify-content-center ">
+    <div class="container w-75">
+        <a class="btn btn-info mb-4" href="{% url 'recepcion' %}">volver</a>
+    </div>
+    <br />
+    <div class="card align-items-center  justify-content-center " style="width: 50rem;">
+        
+        <div class="card-body">
+            <center>
+                
+                <h1 class="card-title text-uppercase">{{ingreso.tram_detalle}} - {{ingreso.decorador}}{{ingreso.contador}}</h1>
+                {% if apenom  %}
+                    <p class="card-text text-uppercase">Cliente: <b>{{apenom}}</b></p>
+                {% else %}
+                    <p class="card-text text-uppercase">Cliente: No ingresado</p>
+                    <a class="btn btn-primary mb-3" href="{% url 'reccliente' ingreso.id ingreso.documento %}">Agregar Cliente</a>
+                {% endif %}
+
+                <p class="card-text">N° Documento: <b>{{ingreso.documento}}</b></p>
+                <p class="card-text">Fecha Ingreso: <b>{{ingreso.fec_ingreso}}</b></p>
+
+                <a class="btn btn-danger" type="button" href="{% url 'atender' ingreso.id %}">
+                    <i class="fa fa-ban"></i> Cancelar Atención 
+                </a>
+                <a class="btn btn-secondary" type="button" 
+                    href="{% url 'genanun' ingreso.recibido ingreso.id ingreso.decorador ingreso.contador %}">
+                    <i class="fa fa-desktop"></i> Anunciar
+                </a>
+                
+            </center>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}

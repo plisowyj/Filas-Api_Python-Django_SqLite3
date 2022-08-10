@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from datetime import date, datetime
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -277,7 +276,7 @@ def recdetail(request,ning):
     ingreso = Ingresos.objects.filter(id=ning)
     cliente = Clientes.objects.filter(documento=ingreso[0].documento)
 
-    apenom = NULL
+    apenom = ""
 
     if cliente:
         Ingresos.objects.filter(id=ning).update(id_cliente=cliente[0].id)
@@ -292,9 +291,9 @@ def Lugardetail(request, ning):
     ingreso = Ingresos.objects.filter(id=ning)
     cliente = Clientes.objects.filter(documento=ingreso[0].documento)
 
-    apenom = NULL
-    fec_nac = NULL
-    picture = NULL
+    apenom = ""
+    fec_nac = ""
+    picture = ""
     if cliente:
         apenom = cliente[0].apellido+' '+cliente[0].nombres
         fec_nac = cliente[0].fec_nac
@@ -414,8 +413,8 @@ def ClieIngFin(request, ning):
 def finder(request):
     show = "true"
     tramites = Tramites.objects.filter(activo="S")
-    form=NULL
-    tramdes=NULL
+    form=""
+    tramdes=""
 
     if request.method == "POST":
         nbus1 = request.POST['busqueda1']

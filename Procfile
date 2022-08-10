@@ -1,1 +1,1 @@
-web: gunicorn SOLUCION_FINAL.wsgi --log-file -
+web: gunicorn SOLUCION_FINAL.wsgi 

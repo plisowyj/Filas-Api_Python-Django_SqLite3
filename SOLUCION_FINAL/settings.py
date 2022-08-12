@@ -12,10 +12,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3+zef3(#0vfe54y_$mc3c_4q_et_i-in&^6ahqo#9c803#1jsk'
+# SECRET_KEY = 'django-insecure-3+zef3(#0vfe54y_$mc3c_4q_et_i-in&^6ahqo#9c803#1jsk'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = ["*"]
 
@@ -139,8 +141,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 
-
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_TMP = os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
@@ -148,3 +148,6 @@ STATIC_URL = '/static/'
 os.makedirs(STATIC_ROOT,exist_ok=True)
 os.makedirs(STATIC_TMP,exist_ok=True)
 
+# Heroku: Update database configuration from $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)

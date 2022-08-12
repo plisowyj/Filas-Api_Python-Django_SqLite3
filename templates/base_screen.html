@@ -54,14 +54,26 @@
 
     <script>
         seleccion=0;
-        
+        let identificadorIntervaloDeTiempo;
+
         $(document).ready(function () {
-            if ($('#titulo').length) {
-                setInterval(reloadTv(), 5000);
-            }
+            repetir();
         });
+        
+        function repetir() {
+            identificadorIntervaloDeTiempo = setInterval(reloadTv, 5000);
+        }
+
         function reloadTv(){
-            document.location.href = "/caller"
+            if ($('#titulo').length == 1) {
+                $.ajax({
+                    url: "/anunws/",
+                    type: "get",
+                    success: (function (data) {
+                        $('#tablaturnos').html(data.table);
+                    })
+                });
+            }
         }
         function ingresar(nId){
             seleccion=nId;

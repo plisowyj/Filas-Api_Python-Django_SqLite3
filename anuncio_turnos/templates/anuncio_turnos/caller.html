@@ -12,23 +12,8 @@
         </div>
     </div>
     
-    {% if form %}
-        <center>
-        <table class="table table-striped text-uppercase" style="width: 85%;">
-            
-            {% for anuncios in form %}
-            <tr>
-                {% if anuncios == first %}
-                    <td class="text-center" style="width: 30%; background-color: aquamarine;font-size: 90px;font-weight: bold;">{{anuncios.decorador}}{{anuncios.contador}}</td>
-                    <td style="width: 30%; background-color: aquamarine;font-size: 90px;font-weight: bold;">{{anuncios.lugar}}</td>
-                {% else %}
-                    <td class="text-center" style="width: 30%; background-color: beige;font-size: 50px;font-weight: bold;">{{anuncios.decorador}}{{anuncios.contador}}</td>
-                    <td style="width: 30%; background-color: beige;font-size: 50px;font-weight: bold;">{{anuncios.lugar}}</td>
-                {% endif %}
-            </tr>
-            {% endfor %}
-        </table>
-        </center>
-    {%endif %}
+    <center>
+    <div id="tablaturnos"></div>
+    </center>
     
 {% endblock %}
